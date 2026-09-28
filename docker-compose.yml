@@ -1,0 +1,19 @@
+# Runs behind the shared Caddy proxy in /opt/proxy, which owns 80/443 for the
+# droplet and issues the certificate. Nothing is published to the host.
+#
+#   docker compose up -d --build
+
+services:
+  web:
+    build: .
+    container_name: kenneth-portfolio
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      caddy: kenneth.makerforge.space
+      caddy.reverse_proxy: "{{upstreams 80}}"
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,8 @@
+node_modules
+dist
+.env*
+*.log
+.DS_Store
+
+# Abandoned Laravel scaffold, not part of the site.
+/backend/
